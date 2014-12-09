@@ -7,8 +7,6 @@ version := "1.0"
 
 scalaVersion := "2.10.4"
 
-val sprayVersion = "1.2.1"
-
 val akkaVersion = "2.2.4"
 
 libraryDependencies ++= Seq(

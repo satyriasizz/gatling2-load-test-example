@@ -55,10 +55,10 @@ object SimulationConfig extends SLF4JLogging {
   /**
    * Scenario repeat count.
    */
-  val repeatCount = getRequiredInt("gatling.repeat_count")
+  val repeatCount = getRequiredInt("scenario.repeat_count")
 
   /**
    * Count of users for simulation.
    */
-  val threads = getRequiredInt("gatling.repeat_count")
+  val threads = getRequiredInt("scenario.repeat_count")
 }
