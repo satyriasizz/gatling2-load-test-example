@@ -18,8 +18,6 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation {
    */
   val httpProtocol = http.baseURL(baseURL)
 
-  val customersWithoutId = customers.map(_.copy(id = None))
-
   /**
    * Returns a random customer in JSON format.
    *
@@ -27,7 +25,7 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation {
    */
   def randCustomer = {
     StringBody(Serialization.write(
-      customersWithoutId(Random.nextInt(customersWithoutId.size))))
+      customers(Random.nextInt(customers.size))))
   }
 
   /**
@@ -40,7 +38,7 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation {
       if (Random.nextBoolean()) s else ""
     }
 
-    val customer = customersWithoutId(Random.nextInt(customersWithoutId.size))
+    val customer = customers(Random.nextInt(customers.size))
     val builder = new StringBuilder("?")
     builder.append(?+(s"firstName=${customer.firstName}"))
     builder.append(?+(s"lastName=${customer.lastName}"))
