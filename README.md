@@ -7,7 +7,7 @@ To start tests you need sbt installed on your computer: http://www.scala-sbt.org
 
 Then you have installed sbt, you can go to project directory and run:
 
-sbt gatling:test
+$ sbt gatling:test
 
 If test result is successful, then you can see report in target/gatling/gatlingsimulation-xxxxx/index.html
 
