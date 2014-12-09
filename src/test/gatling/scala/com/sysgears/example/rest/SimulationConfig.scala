@@ -3,6 +3,7 @@ package com.sysgears.example.rest
 import akka.event.slf4j.SLF4JLogging
 import com.typesafe.config.ConfigFactory
 import scala.util.Try
+import com.typesafe.config.ConfigException.Missing
 
 object SimulationConfig extends SLF4JLogging {
 
@@ -38,7 +39,7 @@ object SimulationConfig extends SLF4JLogging {
   private[this] def handleError(path: String) = {
     val errMsg = s"Missing required configuration entry: $path"
     log.error(errMsg)
-    throw new NoSuchFieldException(errMsg)
+    throw new Missing(errMsg)
   }
 
   /**
