@@ -14,7 +14,6 @@ val akkaVersion = "2.2.4"
 libraryDependencies ++= Seq(
   "com.typesafe.akka" % "akka-actor_2.10" % akkaVersion,
   "com.typesafe.akka" % "akka-slf4j_2.10" % akkaVersion,
-  "io.spray" % "spray-http" % sprayVersion,
   "net.liftweb" % "lift-json_2.10" % "2.5.1"
 )
 

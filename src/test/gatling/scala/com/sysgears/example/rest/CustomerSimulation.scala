@@ -5,7 +5,6 @@ import io.gatling.http.Predef._
 import net.liftweb.json.Serialization
 import com.sysgears.example.rest.data.CustomerTestData._
 import scala.util.Random
-import com.sysgears.example.rest.data.CustomerConversions._
 import com.sysgears.example.rest.SimulationConfig._
 
 /**
@@ -17,6 +16,11 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation {
    * http configuration.
    */
   val httpProtocol = http.baseURL(baseURL)
+
+  /**
+   * Set default formats for json parser.
+   */
+  implicit val formats = net.liftweb.json.DefaultFormats
 
   /**
    * Returns a random customer in JSON format.
