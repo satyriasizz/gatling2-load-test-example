@@ -1,31 +1,27 @@
 package com.sysgears.example.rest.data
 
 import java.text.SimpleDateFormat
-import java.util.Date
+import com.sysgears.example.rest.SimulationConfig
+import scala.util.Random
 
-/**
- * Customer entity.
- *
- * @param id        unique id
- * @param firstName first name
- * @param lastName  last name
- * @param birthday  date of birth
- */
-case class Customer(id: Option[Long], firstName: String, lastName: String, birthday: Option[Date])
-
-object CustomerTestData {
+object CustomerTestData extends SimulationConfig {
 
   val dateFormat = new SimpleDateFormat("yyyy-MM-dd")
 
   //test data
-  val birthday0 = Some(dateFormat.parse("1991-01-14"))
-  val firstName0 = "Andrey"
-  val lastName0 = "Litvinenko"
-  val birthday1 = Some(dateFormat.parse("1987-02-12"))
-  val firstName1 = "Alexander"
-  val lastName1 = "Kalashnikov"
-  val customers = List(
-    Customer(None, firstName0, lastName0, birthday0),
-    Customer(None, firstName1, lastName1, birthday1))
+  val firstNames = getRequiredStringList("data.first_names")
+  val lastNames = getRequiredStringList("data.last_names")
+  val birthdays = getRequiredStringList("data.birthdays")
+
+  def generateCustomer: Customer = {
+    Customer(None,
+      firstNames.get(Random.nextInt(firstNames.size())),
+      lastNames.get(Random.nextInt(lastNames.size())),
+      Some(dateFormat.parse(birthdays.get(Random.nextInt(birthdays.size()))))
+    )
+  }
+
+  val customers = List.fill(threads)(generateCustomer)
+
   val nonExistentCustomerId = customers.size + 1
 }

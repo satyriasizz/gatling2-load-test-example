@@ -5,12 +5,11 @@ import io.gatling.http.Predef._
 import net.liftweb.json.Serialization
 import com.sysgears.example.rest.data.CustomerTestData._
 import scala.util.Random
-import com.sysgears.example.rest.SimulationConfig._
 
 /**
  * Load test for the rest service.
  */
-class CustomerSimulation extends io.gatling.core.scenario.Simulation {
+class CustomerSimulation extends io.gatling.core.scenario.Simulation with SimulationConfig {
 
   /**
    * http configuration.
@@ -39,16 +38,13 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation {
    */
   def randSearchQuery = {
     def ?+(s: String) = {
-      if (Random.nextBoolean()) s else ""
+      if (Random.nextBoolean()) s + "&" else ""
     }
-
     val customer = customers(Random.nextInt(customers.size))
-    val builder = new StringBuilder("?")
-    builder.append(?+(s"firstName=${customer.firstName}"))
-    builder.append(?+(s"lastName=${customer.lastName}"))
-    builder.append(?+(s"birthday=${dateFormat.format(customer.birthday.get)}"))
 
-    builder.toString()
+    "?" + ?+(s"firstName=${customer.firstName}") +
+      ?+(s"lastName=${customer.lastName}") +
+      ?+(s"birthday=${dateFormat.format(customer.birthday.get)}")
   }
 
   /**

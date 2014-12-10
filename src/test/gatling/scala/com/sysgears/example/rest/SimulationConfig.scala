@@ -1,11 +1,10 @@
 package com.sysgears.example.rest
 
 import akka.event.slf4j.SLF4JLogging
-import com.typesafe.config.ConfigFactory
+import com.typesafe.config.{ConfigException, ConfigFactory}
 import scala.util.Try
-import com.typesafe.config.ConfigException.Missing
 
-object SimulationConfig extends SLF4JLogging {
+trait SimulationConfig extends SLF4JLogging {
 
   /**
    * Application config object.
@@ -18,20 +17,32 @@ object SimulationConfig extends SLF4JLogging {
    * @param path path to string
    * @return string fetched by path
    */
-  private[this] def getRequiredString(path: String): String = {
+  def getRequiredString(path: String) = {
     Try(config.getString(path)).getOrElse {
       handleError(path)
     }
   }
 
   /**
-   * Gets required string from config file or throws an exception if string not found.
+   * Gets required int from config file or throws an exception if int not found.
    *
-   * @param path path to string
-   * @return string fetched by path
+   * @param path path to int
+   * @return int fetched by path
    */
-  private[this] def getRequiredInt(path: String): Int = {
+  def getRequiredInt(path: String) = {
     Try(config.getInt(path)).getOrElse {
+      handleError(path)
+    }
+  }
+
+  /**
+   * Gets required string list from config file or throws an exception if string list not found.
+   *
+   * @param path path to string list
+   * @return string list fetched by path
+   */
+  def getRequiredStringList(path: String) = {
+    Try(config.getStringList(path)).getOrElse {
       handleError(path)
     }
   }
@@ -39,7 +50,7 @@ object SimulationConfig extends SLF4JLogging {
   private[this] def handleError(path: String) = {
     val errMsg = s"Missing required configuration entry: $path"
     log.error(errMsg)
-    throw new Missing(errMsg)
+    throw new ConfigException.Missing(errMsg)
   }
 
   /**
