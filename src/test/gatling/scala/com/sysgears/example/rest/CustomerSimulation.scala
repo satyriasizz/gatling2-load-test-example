@@ -91,5 +91,5 @@ class CustomerSimulation extends io.gatling.core.scenario.Simulation with Simula
    */
   setUp(scn.inject(atOnceUsers(threads)))
     .protocols(httpProtocol)
-    .assertions(global.successfulRequests.percent.is(100)) // Check the test result.
+    .assertions(global.successfulRequests.percent.is(percentSuccess)) // Check the test result.
 }

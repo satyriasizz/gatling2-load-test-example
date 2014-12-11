@@ -72,4 +72,9 @@ trait SimulationConfig extends SLF4JLogging {
    * Count of users for simulation.
    */
   val threads = getRequiredInt("scenario.repeat_count")
+
+  /**
+   * Percent of successful service responses when the simulation is considered to be successful.
+   */
+  val percentSuccess = Try(config.getInt("scenario.percent_success")).getOrElse(100)
 }
