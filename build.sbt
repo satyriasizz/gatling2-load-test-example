@@ -1,4 +1,3 @@
-import sbtassembly.Plugin._
 import io.gatling.sbt.GatlingPlugin
 
 name := "rest"
@@ -20,5 +19,3 @@ resolvers ++= Seq(
 )
 
 scalacOptions ++= Seq("-Xmax-classfile-name", "100")
-
-assemblySettings
