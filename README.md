@@ -1,14 +1,8 @@
 Gatling 2 load tests
 =========================
 
-Use the application.conf file (src/test/resources/application.conf) to configure properties.
+Load tests for the application created in article [Building REST Service with Scala](http://sysgears.com/articles/building-rest-service-with-scala/).
 
-To start tests you need sbt installed on your computer: http://www.scala-sbt.org/download.html
+See article [RESTful Service Load Testing Using Gatling 2](http://sysgears.com/articles/restful-service-load-testing-using-gatling-2/).
 
-Then you have installed sbt, you can go to project directory and run:
-
-$ sbt gatling:test
-
-If test result is successful, then you can see report in target/gatling/gatlingsimulation-xxxxx/index.html
-
-Test could be unsuccessful if some of config values were incorrect (emails, tokens, serverUrl) so recheck it, if test result still unsuccessful - look at the logs to find errors.
+See also [Integration Testing of RESTful Service Using Spray-testkit](http://sysgears.com/articles/scala-rest-api-integration-testing-with-spray-testkit/).
