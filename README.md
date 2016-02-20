@@ -6,3 +6,7 @@ Load tests for the application created in article [Building REST Service with Sc
 See article [RESTful Service Load Testing Using Gatling 2](http://sysgears.com/articles/restful-service-load-testing-using-gatling-2/).
 
 See also [Integration Testing of RESTful Service Using Spray-testkit](http://sysgears.com/articles/scala-rest-api-integration-testing-with-spray-testkit/).
+
+Run tests:
+
+`./sbt gatling:test`
