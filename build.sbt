@@ -1,16 +1,14 @@
-import io.gatling.sbt.GatlingPlugin
-
 name := "rest"
 
 version := "1.0"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.6"
 
-val akkaVersion = "2.2.4"
+val akkaVersion = "2.3.9"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" % "akka-actor_2.10" % akkaVersion,
-  "com.typesafe.akka" % "akka-slf4j_2.10" % akkaVersion,
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+  "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
   "net.liftweb" % "lift-json_2.10" % "2.5.1"
 )
 
